@@ -28,6 +28,13 @@ spring:
           filters:
             - StripPrefix=2
             - TokenRelay=
+        - id: freeroam-trails-service
+          uri: lb://FREEROAM-TRAILS-SERVICE
+          predicates:
+            - Path=/api/trails/**
+          filters:
+            - StripPrefix=2
+            - TokenRelay=
 
   security:
     oauth2:
@@ -45,4 +52,4 @@ spring:
             scope: openid, freeroam_summits_read, freeroam_summits_write
 logging:
   level:
-    root: debug
+    root: warn
