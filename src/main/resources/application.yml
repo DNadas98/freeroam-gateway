@@ -2,6 +2,8 @@ server:
   port: 8080
 
 eureka:
+  instance:
+    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
@@ -11,15 +13,22 @@ eureka:
 spring:
   application:
     name: freeroam-gateway-server
-    cloud:
-        gateway:
-        routes:
-          - id: FREEROAM-SUMMITS-SERVICE
-            uri: lb://FREEROAM-SUMMITS-SERVICE
-            predicates:
-              - Path=/api/v1/summits/**
-            filters:
-              - TokenRelay=
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: freeroam-summits-service
+          uri: lb://FREEROAM-SUMMITS-SERVICE
+          predicates:
+            - Path=/api/summits/**
+          filters:
+            - StripPrefix=2
+            - TokenRelay=
+
   security:
     oauth2:
       client:
