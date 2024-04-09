@@ -13,9 +13,8 @@ public class SecurityConfig {
   @Bean
   public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
     http.authorizeExchange(configurer -> configurer
-        .pathMatchers("/actuator/**").permitAll()
-      .pathMatchers("/eureka/**").permitAll()
-      .anyExchange().authenticated())
+        .pathMatchers("/actuator/**", "/eureka/**", "/error").permitAll()
+        .anyExchange().authenticated())
       .oauth2Login(Customizer.withDefaults());
     return http.build();
   }
