@@ -14,6 +14,7 @@ public class SecurityConfig {
   public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
     http.authorizeExchange(configurer -> configurer
         .pathMatchers("/actuator/**", "/eureka/**", "/error").permitAll()
+        .pathMatchers("/api/summits/public/**", "/api/trails/public/**").permitAll()
         .anyExchange().authenticated())
       .oauth2Login(Customizer.withDefaults());
     return http.build();
