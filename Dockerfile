@@ -12,6 +12,4 @@ COPY --from=build /home/app/target/*.jar /usr/local/lib/app.jar
 
 ENV SPRING_PROFILES_ACTIVE=prod
 
-EXPOSE 8761
-
 ENTRYPOINT ["java", "-jar", "/usr/local/lib/app.jar"]
