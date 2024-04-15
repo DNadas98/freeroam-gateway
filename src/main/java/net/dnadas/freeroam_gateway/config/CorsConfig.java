@@ -15,7 +15,7 @@ public class CorsConfig {
   private final String FRONTEND_URL;
 
   @Autowired
-  CorsConfig(@Value("${FRONTEND_URL}") String FRONTEND_URL) {
+  CorsConfig(@Value("${FREEROAM_FRONTEND_URL}") String FRONTEND_URL) {
     this.FRONTEND_URL = FRONTEND_URL;
   }
 
