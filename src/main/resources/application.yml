@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${FREEROAM_EUREKA_HOSTNAME:localhost}
   client:
     serviceUrl:
       defaultZone: ${FREEROAM_EUREKA_URL}
